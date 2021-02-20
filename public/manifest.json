@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Suntec Navigator",
+  "name": "Suntec Navigator",
   "icons": [
     {
       "src": "favicon.ico",
@@ -8,14 +8,9 @@
       "type": "image/x-icon"
     },
     {
-      "src": "logo192.png",
-      "type": "image/png",
-      "sizes": "192x192"
-    },
-    {
-      "src": "logo512.png",
-      "type": "image/png",
-      "sizes": "512x512"
+      "src": "SuntecIcon.svg",
+      "type": "image/svg",
+      "sizes": "48x48 72x72 96x96 128x128 256x256"
     }
   ],
   "start_url": ".",
