@@ -44,3 +44,7 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+## Suntec Navigator
+
+This project provides the ability to see which parts of a floor are shown for certain spaces in the 2dapp. A red rectangle on a floor represents a space (multiple spaces may be shown). If spaces exist on different floors, these may be selected using the sidebar on the right. Only one floor is visible at a time. A floor can also be printed (options in sidebar on the right).
