@@ -18,7 +18,7 @@ const ActionSidebar: React.FC<ActionSidebarProps> = (
 ): JSX.Element => {
   const { width, spaces, onLevelChange, onPrint } = props;
   const floorLevels = spaces
-    ? Array.from(new Set(spaces.map((s) => s.floor_number)))
+    ? Array.from(new Set(spaces.map((s) => s.floorNumber)))
     : [];
 
   const [level, setLevel] = useState(floorLevels[0] || -1);

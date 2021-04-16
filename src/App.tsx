@@ -15,7 +15,6 @@ import getQueryParam from "./services/getQueryParam";
 import PrintService from "./services/printService";
 import api from "./services/api";
 import Constants from "./services/constants";
-import SpacesResult from "./types/SpacesResult";
 
 const sidebarWidth = 150;
 const topbarHeight = 50;
@@ -27,7 +26,7 @@ const App = (): JSX.Element => {
   const [leftWidth, setLeftWidth] = useState(800);
 
   const changeLevel = (level: string) => {
-    const spaceList = spaces.filter((s) => s.floor_number === level);
+    const spaceList = spaces.filter((s) => s.floorNumber === level);
     if (spaceList && spaceList.length > 0) {
       fabricService?.loadFloor(spaceList);
     }
@@ -77,21 +76,18 @@ const App = (): JSX.Element => {
           return;
         }
         await api
-          .get<SpacesResult>(
+          .get<Space[]>(
             `${Constants.webapiEndpoint}/GetSpaceDataByCodes?SpaceCodes=${codes}`
           )
           .then((res) => {
-            if (res.data.Error || !res.data.Spaces) {
-              toast.error("Failed to load spaces", { autoClose: 1000 });
-            }
             // set spaces and default to first space
-            const val = res.data.Spaces.map((s) => ({
+            const val = res.data.map((s) => ({
               ...s,
-              floor_plan_file: `${Constants.contentEndPoint}${s.floor_plan_file}`,
+              floorPlanFile: `${Constants.contentEndPoint}${s.floorPlanFile}`,
             }));
             setSpaces(val);
             if (val.length > 0) {
-              changeLevel(val[0].floor_number);
+              changeLevel(val[0].floorNumber);
             }
           })
           .catch(() => {

@@ -45,17 +45,15 @@ class FabricService {
     const ODD_MARGIN = 59.0551;
     spaceArray.forEach((space: Space) => {
       try {
-        const offsetX = parseFloat(space.space_offset_point.split(",")[0]);
-        const offsetY = parseFloat(space.space_offset_point.split(",")[1]);
-        const xScale = this.myCanvas.width / parseFloat(space.floor_plan_width);
-        const yScale =
-          this.myCanvas.height / parseFloat(space.floor_plan_height);
+        const offsetX = space.spaceOffsetPoint.x;
+        const offsetY = space.spaceOffsetPoint.y;
+        const xScale = this.myCanvas.width / space.floorPlanWidth;
+        const yScale = this.myCanvas.height / space.floorPlanHeight;
         const rect = new fabric.Rect({
           left: (offsetX + ODD_MARGIN) * xScale,
           top: (offsetY + ODD_MARGIN) * yScale,
-          width: (parseFloat(space.space_width) * 12 - 2 * ODD_MARGIN) * xScale,
-          height:
-            (parseFloat(space.space_height) * 12 - 2 * ODD_MARGIN) * yScale,
+          width: (space.spaceWidth * 12 - 2 * ODD_MARGIN) * xScale,
+          height: (space.spaceHeight * 12 - 2 * ODD_MARGIN) * yScale,
           strokeWidth: 2,
           stroke: "#ff0000",
           fill: "rgba(0,0,0,0)",
@@ -78,7 +76,7 @@ class FabricService {
     this.myCanvas.remove(...this.myCanvas.getObjects());
     // load background, then add rectangles for space locations
     // try a file with text and then try the regular if with_txt doesn't exist
-    const backgroundPath = spaceArray[0].floor_plan_file.replace(
+    const backgroundPath = spaceArray[0].floorPlanFile.replace(
       ".svg",
       "_with_txt.svg"
     );
@@ -86,7 +84,7 @@ class FabricService {
       backgroundPath,
       (img, isError) => {
         if (isError) {
-          const backgroundPath2 = spaceArray[0].floor_plan_file;
+          const backgroundPath2 = spaceArray[0].floorPlanFile;
           fabric.Image.fromURL(
             backgroundPath2,
             (img2) => {
